@@ -1,5 +1,6 @@
 import * as axios from 'axios';
 const parseXML = require('xml2js').parseString;
+import { flatten } from './flatten';
 
 const baseURL = `https://www.boardgamegeek.com/xmlapi2`;
 const axiosOptions = {
@@ -17,7 +18,10 @@ export const makeBGGRequest = (url) => {
                     reject(err);
                 }
                 else {
-                    resolve(result);
+                    const item = result.items.item[0];
+                    const flattenedItem = flatten(item);
+
+                    resolve(flattenedItem);
                 }
             });
         }

@@ -7,8 +7,8 @@ export const Boardgame = `
         minPlayers: String
         maxPlayers: String
         playingTime: String
-        minplayTime: String
-        maxplayTime: String
+        minPlayTime: String
+        maxPlayTime: String
         minAge: String
     }
 `;
