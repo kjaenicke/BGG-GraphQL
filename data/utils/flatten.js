@@ -11,6 +11,10 @@ const getObjValue = obj => {
 export const flatten = stacked => {
     let out = {};
 
+    if(stacked.$ && stacked.$.id){
+        out.id = stacked.$.id;
+    }
+
     for (let key in stacked) {
         if (typeof stacked[key] === 'string') {
             out[key] = stacked[key];

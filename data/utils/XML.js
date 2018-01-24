@@ -18,10 +18,7 @@ export const makeBGGRequest = (url) => {
                     reject(err);
                 }
                 else {
-                    const item = result.items.item[0];
-                    const flattenedItem = flatten(item);
-
-                    resolve(flattenedItem);
+                    resolve(result);
                 }
             });
         }

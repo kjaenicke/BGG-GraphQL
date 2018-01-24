@@ -1,12 +1,14 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import { resolvers } from './resolvers'
-import { Boardgame } from './types';
+import { Boardgame, HotBoardgame } from './types';
 
 const typeDefs = `
   ${Boardgame}
+  ${HotBoardgame}
 
   type Query {
     boardgame(id: Int!): Boardgame
+    hotboardgames(id: Int): HotBoardgame
   }
 
   schema {

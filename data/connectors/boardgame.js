@@ -1,12 +1,15 @@
-import { makeBGGRequest } from './utils/XML';
+import { makeBGGRequest } from '../utils/XML';
+import { flatten } from '../utils/flatten';
 
 export const boardgame = (root, { id }) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const game = await makeBGGRequest(`/thing?type=boardgame&id=${id}`);
+
+            const result = await makeBGGRequest(`/thing?type=boardgame&id=${id}`);
+            const game = flatten(result.items.item[0]);
 
             resolve({
-                id,
+                id: game.id,
                 description: game.description,
                 thumbnail: game.thumbnail,
                 yearPublished: game.yearpublished,
