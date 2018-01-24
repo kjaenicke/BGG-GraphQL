@@ -1,21 +1,33 @@
-import { makeExecutableSchema } from 'graphql-tools';
-import { resolvers } from './resolvers'
-import { Boardgame, HotBoardgame } from './types';
+import { GraphQLSchema, GraphQLList, GraphQLString, GraphQLObjectType, GraphQLInt } from 'graphql';
 
-const typeDefs = `
-  ${Boardgame}
-  ${HotBoardgame}
+// Types
+import { BoardgameType, HotBoardgameType } from './types';
 
-  type Query {
-    boardgame(id: Int!): Boardgame
-    hotboardgames(id: Int): HotBoardgame
-  }
+// Connectors (data fetching)
+import { boardgame, hotboardgames } from './connectors'; 
 
-  schema {
-    query: Query
-  }
-`;
+const QueryType = new GraphQLObjectType({
+  name: 'Query',
+  description: 'root',
+  fields: () => ({
+    boardgame: {
+      type: BoardgameType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve: boardgame
+    },
+    hotBoardgames: {
+      type: new GraphQLList(HotBoardgameType),
+      resolve: hotboardgames
+    }
+  })
+})
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+const schema = new GraphQLSchema({
+  query: QueryType
+});
 
 export default schema;
