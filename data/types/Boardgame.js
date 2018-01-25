@@ -1,8 +1,8 @@
 import { GraphQLString, GraphQLObjectType, GraphQLInt } from 'graphql';
 
-export const BoardgameType = new GraphQLObjectType({
-    name: 'Boardgame',
-    description: 'Boardgame',
+export const BoardGameType = new GraphQLObjectType({
+    name: 'BoardGame',
+    description: 'Board game',
     fields: () => ({
         id: {
             type: GraphQLInt

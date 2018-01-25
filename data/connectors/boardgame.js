@@ -1,7 +1,6 @@
-import { makeBGGRequest } from '../utils/XML';
-import { flatten } from '../utils/flatten';
+import { flatten, makeBGGRequest } from '../utils';
 
-export const boardgame = (root, { id }) => {
+export const boardGame = (root, { id }) => {
     return new Promise(async (resolve, reject) => {
         try {
 

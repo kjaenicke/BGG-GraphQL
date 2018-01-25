@@ -1,27 +1,40 @@
 import { GraphQLSchema, GraphQLList, GraphQLString, GraphQLObjectType, GraphQLInt } from 'graphql';
 
 // Types
-import { BoardgameType, HotBoardgameType } from './types';
+import {
+  BoardGameSearchResult,
+  BoardGameType,
+  HotBoardGameType
+} from './types';
 
 // Connectors (data fetching)
-import { boardgame, hotboardgames } from './connectors'; 
+import { boardGame, hotBoardGames, searchBoardGames } from './connectors'; 
 
 const QueryType = new GraphQLObjectType({
   name: 'Query',
   description: 'root',
   fields: () => ({
     boardgame: {
-      type: BoardgameType,
+      type: BoardGameType,
       args: {
         id: {
           type: GraphQLInt
         }
       },
-      resolve: boardgame
+      resolve: boardGame
     },
     hotBoardgames: {
-      type: new GraphQLList(HotBoardgameType),
-      resolve: hotboardgames
+      type: new GraphQLList(HotBoardGameType),
+      resolve: hotBoardGames
+    },
+    search: {
+      type: new GraphQLList(BoardGameSearchResult),
+      args: {
+        query: {
+          type: GraphQLString
+        }
+      },
+      resolve: searchBoardGames
     }
   })
 })

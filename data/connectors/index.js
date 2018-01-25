@@ -1,2 +1,3 @@
-export * from './boardgame';
-export * from './hotboardgames';
+export * from './boardGame';
+export * from './hotBoardGames';
+export * from './searchBoardGames'
